@@ -8,7 +8,6 @@
     <title>近期開發系統清單</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/vue.js"></script>
 
@@ -46,7 +45,7 @@
 
     img {
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
         min-height: 140px;
         opacity: .4;
         filter: alpha(opacity=40);
@@ -54,116 +53,88 @@
 </style>
 
 <body>
-    <div class="container">
+    <div id="app" class="container">
         <h3>近期開發系統清單</h3>
         <hr>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3" v-for="item in system">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h4>廠區能源管理系統</h4>
+                        <h4>{{item.name}}</h4>
 
-                        <img src="images/system1.png">
+                        <img :src="item.image">
                         <p>
-                            <a type="button" class="btn btn-primary" href="http://10.61.13.30:3000/web/index" target="_blank">內網</a>
-                            <a type="button" class="btn btn-danger" href="https://www.youtube.com/watch?v=Z06qMxBzj90" target="_blank">演示</a>
+                            <a type="button" class="btn btn-primary" :href="item.intranet" target="_blank" v-show="item.intranet!=''">內網</a>
+                            <a type="button" class="btn btn-success" :href="item.internet" target="_blank" v-show="item.internet!=''">外網</a>
+                            <a type="button" class="btn btn-danger" :href="item.demo" target="_blank" v-show="item.demo!=''">演示</a>
                         </p>
                     </div>
                 </div>
 
             </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4>智能社區雲平台</h4>
-
-                        <img src="images/system2.png">
-                        <p>
-                            <a type="button" class="btn btn-primary" href="http://10.61.13.30:8000/web/electricity" target="_blank">內網</a>
-                            <a type="button" class="btn btn-danger" href="https://www.youtube.com/watch?v=HagwJTRfM6Y" target="_blank">演示</a>
-                        </p>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4>VRC 使用分析系統</h4>
-
-                        <img src="images/VRC_analysis.jpg">
-                        <p>
-                            <a type="button" class="btn btn-primary" href="http://10.36.246.211:8080/" target="_blank">內網</a>
-                            <a type="button" class="btn btn-success" href="http://210.80.95.211:8080/" target="_blank">外網</a>
-                            <a type="button" class="btn btn-danger" href="https://www.youtube.com/watch?v=XwG90s06pQc" target="_blank">演示</a>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4>網路連線測速系統</h4>
-                        <img src="images/VRC_SpeedTest.png">
-                        <p>
-                            <a type="button" class="btn btn-primary" href="http://10.36.246.211/SpeedTest/" target="_blank">內網</a>
-                            <a type="button" class="btn btn-success" href="http://210.80.95.211/SpeedTest/" target="_blank">外網</a>
-                            <a type="button" class="btn btn-danger" href="https://www.youtube.com/watch?v=Ta2VEjHN2-4" target="_blank">演示</a>
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4>簡報檔案管理系統</h4>
-                        <img src="images/VRC_FileManager.jpg">
-                        <p>
-                            <a type="button" class="btn btn-danger" href="https://www.youtube.com/watch?v=577m31AffA4" target="_blank">演示</a>
-                        </p>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4>電子白板標註軟體</h4>
-                        <img src="images/VrPainter.jpg">
-                        <p>
-                            <a type="button" class="btn btn-danger" href="https://www.youtube.com/watch?v=Q2hBQDXsLmg" target="_blank">演示</a>
-                        </p>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4>工業互聯網題庫查詢系統</h4>
-                        <img src="images/IndustryofInternet.png">
-                        <p>
-                            <a type="button" class="btn btn-success" href="https://mike2014mike.github.io/fox_examination/" target="_blank">外網</a>
-                        </p>
-
-                    </div>
-                </div>
-
-            </div>
-
 
         </div>
 
     </div>
 
     <script>
-
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                //網頁用到的資料都放在這
+                system: [
+                    {
+                        name: "廠區能源管理系統",
+                        image: "images/system1.png",
+                        internet: "",
+                        intranet: "http://10.61.13.30:3000/web/index",
+                        demo: "https://www.youtube.com/watch?v=Z06qMxBzj90"
+                    },
+                    {
+                        name: "智能社區雲平台",
+                        image: "images/system2.png",
+                        internet: "",
+                        intranet: "http://10.61.13.30:8000/web/electricity",
+                        demo: "https://www.youtube.com/watch?v=HagwJTRfM6Y"
+                    },
+                    {
+                        name: "VRC 使用分析系統",
+                        image: "images/VRC_analysis.jpg",
+                        internet: "http://210.80.95.211:8080/",
+                        intranet: "http://10.36.246.211:8080/",
+                        demo: "https://www.youtube.com/watch?v=XwG90s06pQc"
+                    },
+                    {
+                        name: "網路連線測速系統",
+                        image: "images/VRC_SpeedTest.png",
+                        internet: "http://210.80.95.211/SpeedTest/",
+                        intranet: "http://10.36.246.211/SpeedTest/",
+                        demo: "https://www.youtube.com/watch?v=Ta2VEjHN2-4"
+                    },
+                    {
+                        name: "簡報檔案管理系統",
+                        image: "images/VRC_FileManager.jpg",
+                        internet: "",
+                        intranet: "",
+                        demo: "https://www.youtube.com/watch?v=577m31AffA4"
+                    },
+                    {
+                        name: "電子白板標註軟體",
+                        image: "images/VrPainter.jpg",
+                        internet: "",
+                        intranet: "",
+                        demo: "https://www.youtube.com/watch?v=Q2hBQDXsLmg"
+                    },
+                    {
+                        name: "工業互聯網題庫查詢系統",
+                        image: "images/IndustryofInternet.png",
+                        internet: "https://mike2014mike.github.io/fox_examination/",
+                        intranet: "",
+                        demo: ""
+                    }
+                ]
+            }
+        })
 
     </script>
 
