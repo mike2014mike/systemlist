@@ -66,9 +66,12 @@
 
                         <img :src="item.image">
                         <p>
-                            <a type="button" class="btn btn-primary" :href="item.intranet" target="_blank" v-show="item.intranet!=''">內網</a>
-                            <a type="button" class="btn btn-success" :href="item.internet" target="_blank" v-show="item.internet!=''">外網</a>
-                            <a type="button" class="btn btn-danger" :href="item.demo" target="_blank" v-show="item.demo!=''">演示</a>
+                            <a type="button" class="btn btn-primary" :href="item.intranet" target="_blank"
+                                v-show="item.intranet!=''">內網</a>
+                            <a type="button" class="btn btn-success" :href="item.internet" target="_blank"
+                                v-show="item.internet!=''">外網</a>
+                            <a type="button" class="btn btn-danger" :href="item.demo" target="_blank"
+                                v-show="item.demo!=''">演示</a>
                         </p>
                     </div>
                 </div>
@@ -133,6 +136,13 @@
                         internet: "https://mike2014mike.github.io/fox_examination/",
                         intranet: "",
                         demo: ""
+                    },
+                    {
+                        name: "排隊叫號系統",
+                        image: "images/call_number.png",
+                        internet: "",
+                        intranet: "",
+                        demo: "https://www.youtube.com/watch?v=Ml2XYqE5sbE"
                     }
                 ]
             }
